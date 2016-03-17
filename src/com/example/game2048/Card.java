@@ -1,3 +1,11 @@
+/**
+ * @author Haoguang Xu
+ * Copyright (c) 2016, UCAS
+ * All rights reserved. 
+ * 
+ * Card Class {@link Card}  
+ */
+
 package com.example.game2048;
 
 import android.content.Context;
@@ -5,22 +13,22 @@ import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class Card extends FrameLayout {
-	
-	private int num = 0;
-	private TextView lable;
+public class Card extends FrameLayout { // 游戏卡片类
+
+	private int num = 0; // 卡片上的数字
+	private TextView lable; // 卡片显示容器
 
 	public Card(Context context) {
 		super(context);
 		lable = new TextView(getContext());
-		lable.setTextSize(35);
-		lable.setGravity(Gravity.CENTER);
-		lable.setBackgroundColor(0xff33aaa0);
-		LayoutParams lParams = new LayoutParams(-1, -1);//-1，-1表示铺满整个窗口
-		lParams.setMargins(10, 10, 0, 0);;
-		addView(lable,lParams);
-		
-		setNum(0);
+		lable.setTextSize(35); // 设置字体大小
+		lable.setGravity(Gravity.CENTER); // 设置卡片对齐方式
+		lable.setBackgroundColor(0xff33aaa0); // 设置卡片初始背景颜色
+		LayoutParams lParams = new LayoutParams(-1, -1);// -1，-1表示铺满整个窗口
+		lParams.setMargins(10, 10, 0, 0); // 设置卡片与四周的边距
+		addView(lable, lParams); // 显示卡片
+
+		setNum(0); // 初始时设置卡片数字为0
 	}
 
 	public int getNum() {
@@ -29,13 +37,15 @@ public class Card extends FrameLayout {
 
 	public void setNum(int num) {
 		this.num = num;
-		
-		if (num<=0) {
+
+		// 只有当卡片数字大于0时，才在卡片上显示卡片数字
+		if (num <= 0) {
 			lable.setText("");
-		}else{
-			lable.setText(num+"");
+		} else {
+			lable.setText(num + "");
 		}
-		
+
+		// 根据卡片的数字大小来设置卡片的背景颜色，数字越大颜色越深
 		switch (num) {
 		case 0:
 			lable.setBackgroundColor(0xffbbada0);
@@ -81,10 +91,9 @@ public class Card extends FrameLayout {
 			break;
 		}
 	}
-	
+
 	public boolean equals(Card card) {
 		return getNum() == card.getNum();
 	}
 
-	
 }
